@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity {
                                                     float rightEyeOpenProb = face.getRightEyeOpenProbability();
                                                     Log.i(TAG, "RightEYE >>>>>>>>>>>>>>>>>>");
                                                     Log.i(TAG, String.valueOf(rightEyeOpenProb));
-                                                    if (rightEyeOpenProb < 0.23)
+                                                    if (rightEyeOpenProb < 0.50)
                                                     {
                                                         wink = true;
                                                     }
@@ -353,7 +353,7 @@ public class MainActivity extends AppCompatActivity {
                                                 if (face.getLeftEyeOpenProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY)
                                                 {
                                                     float leftEyeOpenProb = face.getLeftEyeOpenProbability();
-                                                    if (leftEyeOpenProb < 0.23)
+                                                    if (leftEyeOpenProb < 0.50)
                                                     {
                                                         wink = true;
                                                     }

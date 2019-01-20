@@ -1,3 +1,11 @@
+// This app is a side project, and is work of Paritosh Morparia
+// Credits:
+// For basic android layouts and activity management, I referred my old (private repository) from work
+// For setting up firebase, I referred https://firebase.google.com/docs/database/android/start
+// For development of this app, I relied on similar project and tutorials
+// https://www.androidauthority.com/firebase-ml-kit-916548/
+// https://medium.com/androidiots/firebase-ml-kit-101-face-detection-5057190e58c0
+// https://medium.com/google-developer-experts/exploring-firebase-mlkit-on-android-face-detection-part-two-de7e307c52e0
 package com.example.facedetectionapp.Activities;
 
 import android.Manifest;

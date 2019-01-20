@@ -8,4 +8,4 @@ Steps To install:
 4. Grant camera permission
 5. You can play around with the app
 
-![alt text](https://github.com/morparia-p/FaceDetectionMLKit/blob/master/Example.jpg)
+![alt text](https://github.com/morparia-p/FaceDetectionMLKit/blob/master/Example.jpg =500x650)

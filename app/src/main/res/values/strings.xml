@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FaceDetectionApp</string>
+    <string name="detect">Detect</string>
+    <string name="error">error in camera</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="ok">OK</string>
+</resources>

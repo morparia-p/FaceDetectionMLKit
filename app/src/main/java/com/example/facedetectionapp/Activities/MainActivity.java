@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.Canvas;
@@ -81,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
 //        startActivityForResult(intent, RC_FACE_DETECTION);
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && resultCode != RESULT_CANCELED && data!= null)
+        {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             Log.i("BitmapSize", String.valueOf(imageBitmap.getHeight())
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, ">>>>>>>>>>>>>> Got Bitmap");
 
             ImageView output_image = findViewById(R.id.output_image);
-            output_image.setImageBitmap(imageBitmap);
+            output_image.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 800, 900, false));
 
             FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(imageBitmap);
             FirebaseVisionFaceDetectorOptions options =
@@ -105,9 +107,17 @@ public class MainActivity extends AppCompatActivity {
                             .enableTracking()
                             .build();
 
-            Canvas canvas = new Canvas();
-            canvas.setBitmap(imageBitmap);
-            FrameLayout main_layout = findViewById(R.id.main_activity_frame);
+            if (!imageBitmap.isMutable())
+            {
+                imageBitmap = imageBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+            }
+            Bitmap finalImageBitmap = imageBitmap;
+
+            Canvas canvas = new Canvas(finalImageBitmap);
+
+            Log.i(TAG, String.valueOf(imageBitmap.isMutable()));
+            //canvas.setBitmap(imageBitmap);
 
             FirebaseVisionFaceDetector detector = FirebaseVision.getInstance().getVisionFaceDetector(options);
             Task<List<FirebaseVisionFace>> result =
@@ -170,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
                                                     canvas.drawCircle(x_1, y_1,2.0F,dot);
 
                                                 }
-                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 800, 900, false));
+                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(finalImageBitmap, 800, 900, false));
 
                                                 Rect bounds = face.getBoundingBox();
                                                 float rotY = face.getHeadEulerAngleY();  // Head is rotated to the right rotY degrees
@@ -211,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                                                     canvas.drawCircle(x_1, y_1,2.0F,dot);
 
                                                 }
-                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 800, 900, false));
+                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(finalImageBitmap, 800, 900, false));
 
 
 
@@ -250,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
                                                     canvas.drawCircle(x_1, y_1,2.0F,dot);
 
                                                 }
-                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 800, 900, false));
+                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(finalImageBitmap, 800, 900, false));
 
                                                 // Left Eyebrow
                                                 faceContours = face.getContour(FirebaseVisionFaceContour.LEFT_EYEBROW_TOP);
@@ -287,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
                                                     canvas.drawCircle(x_1, y_1,2.0F,dot);
 
                                                 }
-                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 800, 900, false));
+                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(finalImageBitmap, 800, 900, false));
 
 
                                                 //Right Eyebrow
@@ -325,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
                                                     canvas.drawCircle(x_1, y_1,2.0F,dot);
 
                                                 }
-                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(imageBitmap, 800, 900, false));
+                                                output_image.setImageBitmap(Bitmap.createScaledBitmap(finalImageBitmap, 800, 900, false));
 
 
                                                 // If landmark detection was enabled (mouth, ears, eyes, cheeks, and
@@ -340,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
                                                 // If classification was enabled:
                                                 if (face.getSmilingProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
                                                     float smileProb = face.getSmilingProbability();
-                                                    if (smileProb > 0.5)
+                                                    if (smileProb > 0.15)
                                                     {
                                                         smile = true;
                                                     }
@@ -352,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
                                                     float rightEyeOpenProb = face.getRightEyeOpenProbability();
                                                     Log.i(TAG, "RightEYE >>>>>>>>>>>>>>>>>>");
                                                     Log.i(TAG, String.valueOf(rightEyeOpenProb));
-                                                    if (rightEyeOpenProb < 0.3)
+                                                    if (rightEyeOpenProb < 0.23)
                                                     {
                                                         wink = true;
                                                     }
@@ -361,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
                                                 if (face.getLeftEyeOpenProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY)
                                                 {
                                                     float leftEyeOpenProb = face.getLeftEyeOpenProbability();
-                                                    if (leftEyeOpenProb < 0.3)
+                                                    if (leftEyeOpenProb < 0.23)
                                                     {
                                                         wink = true;
                                                     }

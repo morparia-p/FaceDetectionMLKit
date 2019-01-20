@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/main_activity_frame"
+        android:gravity="center_horizontal"
         tools:context="com.example.facedetectionapp.facedetector.FaceDetectionActivity">
 
         <ImageView
@@ -20,40 +21,42 @@
             android:layout_gravity="center_horizontal"
             />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:padding="2dp"
-        android:id="@+id/smiles"
-        android:layout_below="@id/output_image"
-        android:visibility="invisible"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:id="@+id/smiles"
+            android:layout_below="@id/output_image"
+            android:visibility="invisible"
+            />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:padding="2dp"
-        android:visibility="invisible"
-        android:layout_below="@+id/smiles"
-        android:id="@+id/winks"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:gravity="center_horizontal"
+            android:visibility="invisible"
+            android:layout_below="@+id/smiles"
+            android:id="@+id/winks"/>
 
-    <Button
-        android:layout_below="@+id/winks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="10dp"
-        android:text="@string/detect"
-        android:textSize="40sp"
-        android:background="@color/colorAccent"
-        android:padding="25dp"
-        android:elevation="8dp"
-        android:backgroundTint="#e3e7e8"
-        android:textAllCaps="false"
-        android:id="@+id/detect_face_button"/>
+        <Button
+            android:layout_below="@+id/winks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="10dp"
+            android:text="@string/detect"
+            android:textSize="40sp"
+            android:background="@color/colorAccent"
+            android:padding="25dp"
+            android:elevation="8dp"
+            android:backgroundTint="#e3e7e8"
+            android:textAllCaps="false"
+            android:id="@+id/detect_face_button"/>
     </RelativeLayout>
 <!--</android.support.constraint.ConstraintLayout>-->

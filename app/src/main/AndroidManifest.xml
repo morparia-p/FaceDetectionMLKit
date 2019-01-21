@@ -23,7 +23,7 @@
         android:debuggable="true"
         tools:ignore="HardcodedDebugMode">
 
-        <activity android:name=".Activities.MainActivity" >
+        <activity android:name=".activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

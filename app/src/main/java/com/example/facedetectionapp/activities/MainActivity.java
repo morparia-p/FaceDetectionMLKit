@@ -6,7 +6,7 @@
 // https://www.androidauthority.com/firebase-ml-kit-916548/
 // https://medium.com/androidiots/firebase-ml-kit-101-face-detection-5057190e58c0
 // https://medium.com/google-developer-experts/exploring-firebase-mlkit-on-android-face-detection-part-two-de7e307c52e0
-package com.example.facedetectionapp.Activities;
+package com.example.facedetectionapp.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -82,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && resultCode != RESULT_CANCELED && data!= null)
         {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Bundle extras = data.getExtras();Bitmap imageBitmap = (Bitmap) extras.get("data");
 //            Log.i("BitmapSize", String.valueOf(imageBitmap.getHeight())
 //                    +" "+String.valueOf(imageBitmap.getWidth()));
 //            Log.i(TAG, ">>>>>>>>>>>>>> Got Bitmap");

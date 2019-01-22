@@ -12,11 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+// Calculated Approx FPS on overlay
 package com.example.facedetectionapp.facedetection;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.firebase.ml.vision.common.FirebaseVisionPoint;
@@ -24,6 +27,9 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFace;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark;
 import com.example.facedetectionapp.common.GraphicOverlay;
 import com.example.facedetectionapp.common.GraphicOverlay.Graphic;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Graphic instance for rendering face position, orientation, and landmarks within an associated
@@ -43,6 +49,10 @@ public class FaceGraphic extends Graphic {
     private final Paint boxPaint;
 
     private volatile FirebaseVisionFace firebaseVisionFace;
+    Date currentTime = Calendar.getInstance().getTime();
+    long deltaTime;
+    long aproxFps;
+    Date previousTime = Calendar.getInstance().getTime();
 
     public FaceGraphic(GraphicOverlay overlay, FirebaseVisionFace face, int facing) {
         super(overlay);
@@ -128,6 +138,13 @@ public class FaceGraphic extends Graphic {
         drawLandmarkPosition(canvas, face, FirebaseVisionFaceLandmark.RIGHT_EAR);
         drawLandmarkPosition(canvas, face, FirebaseVisionFaceLandmark.RIGHT_EYE);
         drawLandmarkPosition(canvas, face, FirebaseVisionFaceLandmark.MOUTH_RIGHT);
+        currentTime = Calendar.getInstance().getTime();
+        deltaTime = currentTime.getTime() - previousTime.getTime();
+        aproxFps = 1000 / deltaTime;
+        previousTime = currentTime;
+        Log.i("FPS", "FPS: " + String.valueOf(aproxFps));
+        canvas.drawText("FPS: " + String.valueOf(aproxFps), 100, 100, idPaint);
+
     }
 
     private void drawLandmarkPosition(Canvas canvas, FirebaseVisionFace face, int landmarkID) {

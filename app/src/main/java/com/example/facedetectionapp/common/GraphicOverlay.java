@@ -21,7 +21,9 @@ import android.view.View;
 import com.google.android.gms.vision.CameraSource;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Calendar;
 
 /**
  * A view which renders a series of custom graphics to be overlayed on top of an associated preview
@@ -43,6 +45,10 @@ import java.util.List;
  * </ol>
  */
 public class GraphicOverlay extends View {
+  Date currentTime = Calendar.getInstance().getTime();
+  long deltaTime;
+  long aproxFps;
+  Date previousTime = Calendar.getInstance().getTime();
   private final Object lock = new Object();
   private int previewWidth;
   private float widthScaleFactor = 1.0f;
@@ -173,5 +179,9 @@ public class GraphicOverlay extends View {
         graphic.draw(canvas);
       }
     }
+    currentTime = Calendar.getInstance().getTime();
+    deltaTime = currentTime.getTime() - previousTime.getTime();
+    aproxFps = 1000 / deltaTime;
+    previousTime = currentTime;
   }
 }

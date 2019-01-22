@@ -1,3 +1,4 @@
+// Calculated Approx FPS on overlay
 package com.example.facedetectionapp.facedetection;
 
 import android.graphics.Canvas;
@@ -9,9 +10,15 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark;
 import com.example.facedetectionapp.common.GraphicOverlay;
 import com.example.facedetectionapp.common.GraphicOverlay.Graphic;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /** Graphic instance for rendering face contours graphic overlay view. */
 public class FaceContourGraphic extends Graphic {
-
+  Date currentTime = Calendar.getInstance().getTime();
+  long deltaTime;
+  long aproxFps;
+  Date previousTime = Calendar.getInstance().getTime();
   private static final float FACE_POSITION_RADIUS = 4.0f;
   private static final float ID_TEXT_SIZE = 30.0f;
   private static final float ID_Y_OFFSET = 80.0f;
@@ -129,5 +136,11 @@ public class FaceContourGraphic extends Graphic {
           FACE_POSITION_RADIUS,
           facePositionPaint);
     }
+      currentTime = Calendar.getInstance().getTime();
+      deltaTime = currentTime.getTime() - previousTime.getTime();
+      aproxFps = 1000 / deltaTime;
+      previousTime = currentTime;
+      canvas.drawText("FPS: " + String.valueOf(aproxFps), 100, 100, idPaint);
+
   }
 }

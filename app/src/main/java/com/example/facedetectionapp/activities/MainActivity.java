@@ -67,16 +67,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void openCamera(){
-        int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        if (rc == PackageManager.PERMISSION_GRANTED) {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        }else {
-            Log.i(TAG, String.valueOf((rc == PackageManager.PERMISSION_GRANTED)));
-            Toast.makeText(this,"Please give camera permission", Toast.LENGTH_LONG).show();
+        Intent takePictureIntent = new Intent(this, LivePreviewActivity.class);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(takePictureIntent);
         }
+//        int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+//        if (rc == PackageManager.PERMISSION_GRANTED) {
+//            Intent takePictureIntent = new Intent(this, LivePreviewActivity.class);
+//            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+//                startActivity(takePictureIntent);
+//            }
+//        }else {
+//            Log.i(TAG, String.valueOf((rc == PackageManager.PERMISSION_GRANTED)));
+//            Toast.makeText(this,"Please give camera permission", Toast.LENGTH_LONG).show();
+//        }
 
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

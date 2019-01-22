@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.example.facedetectionapp.facedetection;
+package com.example.facedetectionapp.common;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

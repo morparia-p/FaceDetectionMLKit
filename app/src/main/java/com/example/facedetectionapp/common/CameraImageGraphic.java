@@ -1,10 +1,10 @@
-package com.example.facedetectionapp.facedetection ;
+package com.example.facedetectionapp.common;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.facedetectionapp.facedetection.GraphicOverlay.Graphic;
+import com.example.facedetectionapp.common.GraphicOverlay.Graphic;
 
 /** Draw camera image to background. */
 public class CameraImageGraphic extends Graphic {

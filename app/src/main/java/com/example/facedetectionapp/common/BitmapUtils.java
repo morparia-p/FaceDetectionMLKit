@@ -1,4 +1,4 @@
-package com.example.facedetectionapp.facedetection ;
+package com.example.facedetectionapp.common;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

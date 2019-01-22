@@ -11,6 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+// Modified from source to reduce the number of tasks it performs
 package com.example.facedetectionapp.activities;
 
 import android.content.Context;

@@ -6,6 +6,8 @@
 // https://www.androidauthority.com/firebase-ml-kit-916548/
 // https://medium.com/androidiots/firebase-ml-kit-101-face-detection-5057190e58c0
 // https://medium.com/google-developer-experts/exploring-firebase-mlkit-on-android-face-detection-part-two-de7e307c52e0
+
+
 package com.example.facedetectionapp.activities;
 
 import android.Manifest;
